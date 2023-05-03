@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/04 03:53:56 by psaeyang         ###   ########.fr       */
+/*   Created: 2023/05/04 02:56:05 by psaeyang          #+#    #+#             */
+/*   Updated: 2023/05/04 02:57:15 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
-# include <sys/time.h>
-
-// typedef struct s_philo
-// {
-    
-// } t_philo;
-
-int		verify_av(char **av);
-int		verify_digit(char n);
-
-#endif
+int verify_digit(char n)
+{
+    if (n >= '0' && n <= '9')
+        return(1);
+    return(0);
+}
