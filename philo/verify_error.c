@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:58:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/08 20:48:06 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/09 04:21:18 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void    print_error(int n)
     exit(0);
 }
 
+int verify_digit(char n)
+{
+    if (n >= '0' && n <= '9')
+        return(1);
+    return(0);
+}
+
 int	verify_av(char **av)
 {
 	int i;
@@ -38,8 +45,6 @@ int	verify_av(char **av)
 		j = 0;
 		while(av[i][j])
 		{
-			if (av[i][0] == '+')
-				j++;
 			if (verify_digit(av[i][j]) == 0)
                 print_error(1);
 			j++;

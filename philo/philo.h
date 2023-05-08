@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/09 02:09:35 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/09 05:20:11 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_philo
+typedef struct philo
 {
-	int			amount_ph;
-	int			have_a_meal;
-	int			bedtime;
-	int			pass_away;
+	int			philo;
+	
 } t_philo;
+
+
+typedef struct s_input
+{
+	int					amount_ph;
+	int					max_meal;
+	long int			have_a_meal;
+	long int			bedtime;
+	long int			pass_away;
+} t_input;
 
 # define RESET	"\x1b[0m"
 # define RED	"\x1B[31m"
@@ -38,7 +46,7 @@ typedef struct s_philo
 # define BBC	"\x1B[46;1m"
 # define BR		"\x1B[41;1m"
 
-
+void	parse_input(t_input *input, int ac, char **av);
 void    verify_input(int ac, char **av);
 int		verify_av(char **av);
 int		verify_digit(char n);

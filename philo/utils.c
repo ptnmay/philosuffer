@@ -6,18 +6,11 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:56:05 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/08 19:33:42 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/09 04:21:29 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int verify_digit(char n)
-{
-    if (n >= '0' && n <= '9')
-        return(1);
-    return(0);
-}
 
 int space(char s)
 {
