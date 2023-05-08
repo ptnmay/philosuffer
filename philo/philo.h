@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/07 01:20:05 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:15:06 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-// typedef struct s_philo
-// {
+typedef struct s_philo
+{
     
-// } t_philo;
+} t_philo;
 
 # define RESET	"\x1b[0m"
 # define RED	"\x1B[31m"
