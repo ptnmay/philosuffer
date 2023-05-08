@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 23:56:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/08 20:10:35 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/09 02:10:17 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main(int ac, char **av)
 {
+	t_philo	philo;
 	verify_input(ac, av);
 	// parse_input(av);
 }

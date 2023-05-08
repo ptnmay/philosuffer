@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/08 20:15:06 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/09 02:09:35 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 
 typedef struct s_philo
 {
-    
+	int			amount_ph;
+	int			have_a_meal;
+	int			bedtime;
+	int			pass_away;
 } t_philo;
 
 # define RESET	"\x1b[0m"
