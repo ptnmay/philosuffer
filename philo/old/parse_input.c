@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 23:56:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/15 06:52:25 by psaeyang         ###   ########.fr       */
+/*   Created: 2023/05/09 04:22:50 by psaeyang          #+#    #+#             */
+/*   Updated: 2023/05/09 21:57:10 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+void	parse_input(t_time *time, int ac, char **av)
 {
-	t_env	*env;
-
-	env = NULL;
-
-	if ((ac == 5 || ac == 6) && verify_av(av) == 1)
-	{
-		parse_time(ac, av, env);
-	}
+	time->amount_ph = ft_atoi(av[1]);
+	time->pass_away = ft_atoi(av[2]) * 1000;
+	time->have_a_meal = ft_atoi(av[3]) * 1000;
+	time->bedtime = ft_atoi(av[4]) * 1000;
+	if (ac == 6)
+		time->max_meal = ft_atoi(av[5]);
 	else
-		print_error();
-
-
-	// if ((ac != 5 && ac != 6) && (verify_av(av) == 0))
-	// 	print_error();
-	// if (parse_time(ac, av, env))
-	// {
-	// 	// printf("here\n");
-	// 	return (print_error2(NULL));
-	// }
+		time->max_meal = 0;
+	
 }

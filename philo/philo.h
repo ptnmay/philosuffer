@@ -6,48 +6,52 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/09 05:20:11 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/15 06:43:16 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <stdbool.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include "color.h"
+
+typedef struct s_time
+{
+	int					num_ph;
+	int					max_meal;
+	int					have_a_meal;
+	int					bedtime;
+	int					pass_away;
+} t_time;
 
 typedef struct philo
 {
-	int			philo;
-	
+	pthread_t			th_philo;
+	pthread_mutex_t		fork;	
+	int					id_phi;
+	t_time				*time;
 } t_philo;
 
-
-typedef struct s_input
+typedef struct env
 {
-	int					amount_ph;
-	int					max_meal;
-	long int			have_a_meal;
-	long int			bedtime;
-	long int			pass_away;
-} t_input;
+	int					cur_id;
+	bool				dead;
+	t_time				time;
+	t_philo				*philo;
+	pthread_mutex_t		*forks;
+	pthread_mutex_t		*table;
+} t_env;
 
-# define RESET	"\x1b[0m"
-# define RED	"\x1B[31m"
-# define GRN	"\x1B[32m"
-# define YEL	"\x1B[33m"
-# define BLU	"\x1B[34m"
-# define PP		"\x1B[35m"
-# define CYA	"\x1B[36m"
-# define BBY	"\x1B[43;1m"
-# define BBC	"\x1B[46;1m"
-# define BR		"\x1B[41;1m"
 
-void	parse_input(t_input *input, int ac, char **av);
-void    verify_input(int ac, char **av);
+int		parse_time(int ac, char **av, t_env *env);
+int		print_error2(t_env *env);
+int		print_error(void);
 int		verify_av(char **av);
 int		verify_digit(char n);
 int		ft_atoi(const char *str);
