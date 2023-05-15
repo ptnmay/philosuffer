@@ -6,7 +6,7 @@
 #    By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 02:05:56 by psaeyang          #+#    #+#              #
-#    Updated: 2023/05/09 05:20:23 by psaeyang         ###   ########.fr        #
+#    Updated: 2023/05/16 06:47:09 by psaeyang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		= gcc
 RM		= rm -f
 C_FLAGS	= -Wall -Wextra -Werror
 
-SRCS	= philo.c verify_error.c utils.c parse_input.c
+SRCS	= philo.c verify_error.c utils.c set_up.c time.c
 
 OBJS	= $(SRCS:.c=.o)
 

@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 23:56:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 06:08:02 by psaeyang         ###   ########.fr       */
+/*   Created: 2023/05/16 06:39:36 by psaeyang          #+#    #+#             */
+/*   Updated: 2023/05/16 06:55:47 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+long	now(void)
 {
-	t_env	env;
+	t_time	time;
 
-	if (ac != 5 && ac != 6)
-		return(philo_error(NULL));
-	if (set_up_env(ac, av, &env))
-		return(philo_error(&env));
-	if (set_up_fork(&env))
-		return(philo_error(&env));
+	gettimeofday(&time, NULL);
+	return((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
 
-	
-	// printf("----here----\n");
+long	present(long past)
+{
+	t_time	time;
+	long	res;
+
+	gettimeofday(&time, NULL);
+	res = ((time.tv_sec * 1000) + (time.tv_usec / 1000)) - past;
+	return(res);
+}
+
+int		wait_a_minute(long time, t_env *env)
+{
+	long	then;
+
+	then =  now();
+	while(!env->gone && present(then) < time)
+		usleep(200);
+	return(env->gone);
 }

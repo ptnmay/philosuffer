@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:58:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 02:46:56 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/16 05:55:38 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	philo_error(t_env *env)
 {
-	if (env)
-		free_env(env);
-	write(STDERR_FILENO, "Error\n", 7);
+	// if (env)
+	// 	free(env);
+	(void)env;
+	write(2, "Error\n", 7);
 	return (EXIT_FAILURE);
 }
 

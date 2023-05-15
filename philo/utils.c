@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:56:05 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/15 22:02:05 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/16 05:56:03 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_atoi(const char *str)
         res = res * 10 + (str[i] - '0');
         i++;
     }
-    // printf("res = %d\n", res);
     if (str[0] == '-')
         return(res * -1);
     return(res);
