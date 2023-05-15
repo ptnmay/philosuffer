@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 04:22:50 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/15 06:40:11 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:07:20 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	parse_time(int ac, char **av, t_env *env)
 {
-
-	env->forks = NULL;
+	// env->forks = NULL;
+	// env->philo = NULL;
+	// env->dead = 0;
 	printf("here\n");
-	env->philo = NULL;
-	env->dead = 0;
 	env->time.num_ph = ft_atoi(av[1]);
 	env->time.pass_away = ft_atoi(av[2]);
 	env->time.have_a_meal = ft_atoi(av[3]);

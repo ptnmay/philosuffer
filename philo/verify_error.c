@@ -6,24 +6,18 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:58:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/15 06:53:58 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/16 02:46:56 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	print_error2(t_env *env)
+int	philo_error(t_env *env)
 {
 	if (env)
-		free(env);
-	write(STDERR_FILENO, "SOMETHING WRONG\n", 17);
+		free_env(env);
+	write(STDERR_FILENO, "Error\n", 7);
 	return (EXIT_FAILURE);
-}
-
-int    print_error(void)
-{
-	printf("WRONG\n");
-	return(EXIT_FAILURE);
 }
 
 int verify_digit(char n)
@@ -39,7 +33,7 @@ int	verify_av(char **av)
 	int j;
 
     if (ft_atoi(av[1]) > 200)
-        print_error();
+        return(0);
 	i = 1;
 	while(av[i])
 	{
@@ -47,11 +41,11 @@ int	verify_av(char **av)
 		while(av[i][j])
 		{
 			if (verify_digit(av[i][j]) == 0)
-                print_error();
+	        	return(0);
 			j++;
 		}
 		if (ft_atoi(av[i]) == 0)
-			print_error();
+        	return(0);
 		i++;
 	}
 	return(1);
