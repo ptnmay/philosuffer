@@ -6,38 +6,74 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:56:05 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 05:56:03 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/17 06:29:21 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int space(char s)
+void    tamlaimutex(t_env *env)
 {
-    if ((s >= 9 && s <= 13) || s == 32)
-        return(1);
-    return(0);
+    int	i;
+
+    i = 0;
+    pthread_mutex_destroy(env->table);
+	while (i < DATA.num_ph)
+	{
+		pthread_mutex_destroy(&env->forks[i]);
+		i++;
+	}
 }
 
-int	ft_atoi(const char *str)
+void    verify_dead(t_env *env)
 {
-    int i = 0;
-    int res = 0;
+    int id;
+    int cnt;
 
-    if (str[0] == '-' || str[0] == '+')
-        i = 1;
-    while(space(str[i]) == 1)
-        i++;
-    while(str[i] >= '0' && str[i] <= '9')
-    {   
-        while(space(str[i]) == 1)
-            i++;
-        if (str[i] == '-' || str[i] == '+')
-            return(0);
-        res = res * 10 + (str[i] - '0');
-        i++;
+    id = 0;
+    cnt = 0;
+    while(!env->gone && (cnt != DATA.num_ph))
+    {
+        if (id >= DATA.num_ph)
+            id = 0;
+        if (PHILO[id].eat_cnt >= DATA.max_meal && !PHILO[id].checked && DATA.max_meal != -1)
+        {
+            cnt++;
+            PHILO->checked = 1;
+        }
+        else if (present(PHILO[id].t_lastmeal) > DATA.gonetime)
+        {
+            env->gone = 1;
+		    printf("%s%ld %d is die%s\n",RED, present(PHILO[id].t_start), id + 1, reset);
+            return ;
+        }
+        id++;
     }
-    if (str[0] == '-')
-        return(res * -1);
-    return(res);
+    tamlaimutex(env);
+}
+
+void	free_env(t_env *env)
+{
+	int	i;
+
+	i = 0;
+	if (env->forks)
+		free(env->forks);
+	if (env->philo)
+	{
+		while(i < DATA.num_ph && PHILO[i].th)
+		{
+			free(PHILO[i].th);
+			i++;
+		}
+		free(env->philo);
+	}
+}
+
+void    free_philo(t_env *env)
+{
+    verify_dead(env);
+    free(env->forks);
+	free(env->philo);
+	free(env->table);
 }

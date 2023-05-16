@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 04:22:50 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/17 02:51:29 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/17 05:45:37 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	set_up_philo(t_env *env)
 		// pthread_create(&PHILO[i].th, NULL, testroutine, env);
 		pthread_create(&PHILO[i].th, NULL, routine, env);
 		pthread_detach(PHILO[i].th);
-		usleep(100);
+		usleep(10);
 		i += 2;
-		if (i >= DATA.num_ph && i % 2 == 0)
+		if ((i >= DATA.num_ph) && (i % 2 == 0))
 			i = 1;
 	}
 	return(EXIT_SUCCESS);
@@ -47,10 +47,10 @@ int	set_up_fork(t_env *env)
 	env->forks = malloc(sizeof(pthread_mutex_t) * DATA.num_ph);
 	if (!env->forks)
 		return(EXIT_FAILURE);
-	PHILO = malloc(sizeof(pthread_mutex_t) * DATA.num_ph);
+	PHILO = malloc(sizeof(t_philo) * DATA.num_ph);
 	if (!PHILO)
 		return(EXIT_FAILURE);
-	while (i <= DATA.num_ph)
+	while (i < DATA.num_ph)
 	{
 		PHILO[i].id = i + 1;
 		PHILO[i].myfork = i;
@@ -58,17 +58,10 @@ int	set_up_fork(t_env *env)
 		PHILO[i].th = NULL;
 		pthread_mutex_init(&env->forks[i], NULL);
 		PHILO[i].eat_cnt = 0;
+		PHILO[i].t_lastmeal = 0;
+		PHILO[i].t_start = 0;
 		i++;
 	}
-	// i = 0;
-	// while(i < 10)
-	// {
-	// 	printf("id == [%d]\n", PHILO[i].id);
-	// 	printf("fork == [%d]\n", PHILO[i].myfork);
-	// 	i++;
-
-	// }
-
 	return(EXIT_SUCCESS);
 }
 

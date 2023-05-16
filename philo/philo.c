@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 23:56:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 15:52:04 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/17 06:22:22 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int main(int ac, char **av)
 		return(philo_error(&env));
 	if (set_up_philo(&env))
 		return(philo_error(&env));
-	
+	free_philo(&env);
+	return(EXIT_SUCCESS);
 
 	
 	// printf("----here----\n");
