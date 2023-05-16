@@ -6,13 +6,13 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 04:22:50 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 06:56:23 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/17 02:51:29 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *routine(void *env)
+void *testroutine(void *env)
 {
 	(void)env;
 	printf("hello philo\n");
@@ -24,13 +24,17 @@ int	set_up_philo(t_env *env)
 	int i;
 
 	i = 0;
-	while(i <= DATA.num_ph)
+	while(i < DATA.num_ph)
 	{
 		PHILO[i].t_start = now();
 		env->cur_id = i;
+		// pthread_create(&PHILO[i].th, NULL, testroutine, env);
 		pthread_create(&PHILO[i].th, NULL, routine, env);
 		pthread_detach(PHILO[i].th);
-		i++;
+		usleep(100);
+		i += 2;
+		if (i >= DATA.num_ph && i % 2 == 0)
+			i = 1;
 	}
 	return(EXIT_SUCCESS);
 }
@@ -46,11 +50,11 @@ int	set_up_fork(t_env *env)
 	PHILO = malloc(sizeof(pthread_mutex_t) * DATA.num_ph);
 	if (!PHILO)
 		return(EXIT_FAILURE);
-	while (i < DATA.num_ph)
+	while (i <= DATA.num_ph)
 	{
 		PHILO[i].id = i + 1;
 		PHILO[i].myfork = i;
-		PHILO[i].notmyfork = 0; //have to edit
+		PHILO[i].notmyfork = (i + 1) % DATA.num_ph;
 		PHILO[i].th = NULL;
 		pthread_mutex_init(&env->forks[i], NULL);
 		PHILO[i].eat_cnt = 0;
@@ -64,6 +68,7 @@ int	set_up_fork(t_env *env)
 	// 	i++;
 
 	// }
+
 	return(EXIT_SUCCESS);
 }
 
@@ -82,6 +87,10 @@ int	set_up_env(int ac, char **av, t_env *env)
 		DATA.max_meal = ft_atoi(av[5]);
 	else
 		DATA.max_meal = -1;
+	env->table = malloc(sizeof(pthread_t));
+	if (!env->table)
+		return (EXIT_FAILURE);
+	pthread_mutex_init(env->table, NULL);
 	// printf("philo == [%d]\n", DATA.num_ph);
 	// printf("gone == [%d]\n", DATA.gonetime);
 	// printf("eat == [%d]\n", DATA.have_a_meal);

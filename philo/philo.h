@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 06:50:36 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/17 02:25:20 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int		space(char s);
 long	present(long past);
 int		wait_a_minute(long time, t_env *env);
 long	now(void);
+int		set_up_philo(t_env *env);
+void	*routine(void *en);
 
 #endif
