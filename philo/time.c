@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 06:39:36 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/16 06:55:47 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:03:13 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long	now(void)
 	t_time	time;
 
 	gettimeofday(&time, NULL);
-	return((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 long	present(long past)
@@ -26,16 +26,16 @@ long	present(long past)
 	long	res;
 
 	gettimeofday(&time, NULL);
-	res = ((time.tv_sec * 1000) + (time.tv_usec / 1000)) - past;
-	return(res);
+	res = (time.tv_sec * 1000 + time.tv_usec / 1000) - past;
+	return (res);
 }
 
-int		wait_a_minute(long time, t_env *env)
+int	wait_a_minute(long time, t_env *env)
 {
 	long	then;
 
-	then =  now();
-	while(!env->gone && present(then) < time)
+	then = now();
+	while (!env->gone && present(then) < time)
 		usleep(200);
-	return(env->gone);
+	return (env->gone);
 }
