@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 04:22:50 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/18 01:59:28 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:34:43 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	set_up_philo(t_env *env)
 	i = 0;
 	while (i < env->data.num_ph)
 	{
-		PHILO[i].t_start = now();
+		env->philo[i].t_start = now();
 		env->cur_id = i;
-		pthread_create(&PHILO[i].th, NULL, routine, env);
-		pthread_detach(PHILO[i].th);
+		pthread_create(&env->philo[i].th, NULL, routine, env);
+		pthread_detach(env->philo[i].th);
 		usleep(50);
 		i += 2;
 		if (i >= env->data.num_ph && i % 2 == 0)
@@ -36,23 +36,23 @@ int	set_up_fork(t_env *env)
 	int	i;
 
 	i = 0;
-	env->forks = malloc(sizeof(pthread_mutex_t) * DATA.num_ph);
+	env->forks = malloc(sizeof(pthread_mutex_t) * env->data.num_ph);
 	if (!env->forks)
 		return (EXIT_FAILURE);
-	env->philo = (t_philo *)malloc(sizeof(t_philo) * DATA.num_ph);
+	env->philo = (t_philo *)malloc(sizeof(t_philo) * env->data.num_ph);
 	if (!env->philo)
 		return (free(env->forks), EXIT_FAILURE);
-	while (i < DATA.num_ph)
+	while (i < env->data.num_ph)
 	{
-		PHILO[i].id = i + 1;
-		PHILO[i].myfork = i;
-		PHILO[i].notmyfork = (i + 1) % DATA.num_ph;
-		PHILO[i].th = NULL;
+		env->philo[i].id = i + 1;
+		env->philo[i].myfork = i;
+		env->philo[i].notmyfork = (i + 1) % env->data.num_ph;
+		env->philo[i].th = NULL;
 		pthread_mutex_init(&env->forks[i], NULL);
-		PHILO[i].eat_cnt = 0;
-		PHILO[i].checked = 0;
-		PHILO[i].t_lastmeal = 0;
-		PHILO[i].t_start = 0;
+		env->philo[i].eat_cnt = 0;
+		env->philo[i].checked = 0;
+		env->philo[i].t_lastmeal = 0;
+		env->philo[i].t_start = 0;
 		i++;
 	}
 	return (EXIT_SUCCESS);

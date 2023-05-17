@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:56:05 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/18 02:07:33 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:36:30 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ void	verify_dead(t_env *env)
 
 	id = 0;
 	cnt = 0;
-	while (!env->gone && cnt != DATA.num_ph)
+	while (!env->gone && cnt != env->data.num_ph)
 	{
-		if (id >= DATA.num_ph)
+		if (id >= env->data.num_ph)
 			id = 0;
-		if (PHILO[id].eat_cnt >= DATA.max
-			&& !PHILO[id].checked && DATA.max != -1)
+		if (env->philo[id].eat_cnt >= env->data.max
+			&& !env->philo[id].checked && env->data.max != -1)
 		{
 			cnt++;
-			PHILO[id].checked = 1;
+			env->philo[id].checked = 1;
 		}
-		else if (present(PHILO[id].t_lastmeal) > env->data.gonetime)
+		else if (present(env->philo[id].t_lastmeal) > env->data.gonetime)
 		{
 			env->gone = 1;
-			printf(BYE, RED, present(PHILO[id].t_start), id + 1, RESET);
+			printf(BYE, RED, present(env->philo[id].t_start), id + 1, RESET);
 			printf("%s（┛〃°　Д°）┛\n%s", BCYN, RESET);
 			return ;
 		}
@@ -72,9 +72,9 @@ void	free_env(t_env *env)
 		free(env->forks);
 	if (env->philo)
 	{
-		while (i < env->data.num_ph && PHILO[i].th)
+		while (i < env->data.num_ph && env->philo[i].th)
 		{
-			free(PHILO[i].th);
+			free(env->philo[i].th);
 			i++;
 		}
 		free(env->philo);
