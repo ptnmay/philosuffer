@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 02:58:47 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/18 02:08:59 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:25:26 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int	space(char s)
 
 int	ft_atoi(const char *str)
 {
-	int	i = 0;
-	int	res = 0;
+	int	i;
+	int	res;
 
+	i = 0;
+	res = 0;
 	if (str[0] == '-' || str[0] == '+')
 		i = 1;
 	while (space(str[i]) == 1)

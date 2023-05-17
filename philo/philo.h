@@ -6,7 +6,7 @@
 /*   By: psaeyang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 04:06:57 by psaeyang          #+#    #+#             */
-/*   Updated: 2023/05/18 02:05:48 by psaeyang         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:31:13 by psaeyang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct s_env
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		*table;
 }	t_env;
+
+// https://github.com/armou/Fractal_Visualizer/blob/master/includes/fractol.h
+// refer to armel github he can do it I can do it too !!!
 
 # define PHILO		env->philo
 # define DATA		env->data
