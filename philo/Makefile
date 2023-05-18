@@ -14,7 +14,7 @@ NAME	= philo
 
 CC		= gcc
 RM		= rm -f
-C_FLAGS	= -Wall -Wextra -Werror -pthread -O3 #-g #-fsanitize=address
+C_FLAGS	= -Wall -Wextra -Werror -pthread -O3 -g #-fsanitize=address
 
 SRCS	= philo.c verify_error.c utils.c set_up.c time.c routine.c
 
